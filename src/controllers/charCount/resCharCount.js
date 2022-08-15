@@ -3,7 +3,7 @@ import charCounter from "./charCounter.js";
 import { performance } from "perf_hooks";
 import data from "./data.js";
 
-const sendCharCount = async (req, res) => {
+const sendCharCount = async () => {
   const start = performance.now();
   const location = await getData("location");
   const episode = await getData("episode");
@@ -20,7 +20,7 @@ const sendCharCount = async (req, res) => {
 
   data["in-time"] = parseInt(runTime) < 3000 ? true : false;
 
-  return res.json(result);
+  return result;
 };
 
 export default sendCharCount;

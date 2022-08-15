@@ -1,29 +1,33 @@
 import api from "../../api.js";
 import dataEpi from "./data.js";
 import charOrigin from "./charOrigin.js";
+import { performance } from "perf_hooks";
+import countEpisode from "./countEpisode.js";
 
 const getData = async () => {
-  const episodeNum = await api.get("episode");
-  const { info } = episodeNum.data;
-  let quantity = [];
-
-  for (let i = 1; i <= info.count; i++) {
-    quantity.push(i);
-  }
-
+  const start = performance.now();
+  const quantity = await countEpisode("episode");
   const episodeData = await api.get(`episode/${quantity}`);
   const { data } = episodeData;
 
   for (let c = 0; c < data.length; c++) {
-    dataEpi.results.push({
-      id: data[c].id,
-      name: data[c].name,
-      episode: data[c].episode,
-      origin: data[c].characters,
-    });
+    let origin = await charOrigin(data[c].characters);
+
+    dataEpi.results.length < quantity.length &&
+      dataEpi.results.push({
+        name: data[c].name,
+        episode: data[c].episode,
+        locations: origin,
+        ["total locations"]: origin.length,
+      });
   }
-  console.log(dataEpi.results);
+
+  const end = performance.now();
+  const runTime = (end - start).toString().split(".");
+  dataEpi.time = `${runTime}ms`;
+  dataEpi["in-time"] = parseInt(runTime) < 3000 ? true : false;
+
+  return dataEpi;
 };
 
-getData();
 export default getData;

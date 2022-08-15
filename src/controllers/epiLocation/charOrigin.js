@@ -1,16 +1,22 @@
-import axios from "axios";
+import character from "./characters.js";
 
 const charOrigin = async (route) => {
   const originName = [];
-  let origin = "";
+  let originNameFilter = [];
+  const origin = await character();
 
   for (let i = 0; i < route.length; i++) {
-    const res = await axios.get(route[i]);
+    const idChar = route[i].split("/")[5];
 
-    originName.push(res.data.origin.name);
+    origin.map((e) => {
+      if (e.id === parseInt(idChar)) {
+        originName.push(e.origin);
+      }
+    });
   }
+  originNameFilter = [...new Set(originName)];
 
-  return origin;
+  return originNameFilter;
 };
 
 export default charOrigin;

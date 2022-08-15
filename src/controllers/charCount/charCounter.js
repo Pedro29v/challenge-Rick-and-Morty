@@ -11,11 +11,12 @@ const charCounter = (char, names, source) => {
     }
   });
 
-  data.results.push({
-    char: char,
-    count: count,
-    resource: source,
-  });
+  data.results.length < 3 &&
+    data.results.push({
+      char: char,
+      count: count,
+      resource: source,
+    });
 
   return data;
 };
