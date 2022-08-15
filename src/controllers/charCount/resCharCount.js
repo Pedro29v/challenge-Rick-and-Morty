@@ -20,7 +20,7 @@ const sendCharCount = async (req, res) => {
 
   data["in-time"] = parseInt(runTime) < 3000 ? true : false;
 
-  res.status(200).json(result);
+  return res.json(result);
 };
 
 export default sendCharCount;

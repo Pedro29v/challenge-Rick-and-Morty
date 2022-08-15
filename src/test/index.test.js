@@ -1,4 +1,4 @@
-import app from "../routes/indexRoutes";
+import app from "../app.js";
 import request from "supertest";
 
 //LOCATION
@@ -9,7 +9,7 @@ describe("GET charCounter", () => {
     expect(response.statusCode).toBe(200);
   });
 
-  test("Should be string", async () => {
+  test("Should be Json", async () => {
     const response = await request(app).get("/");
     expect(response.header["content-type"]).toEqual(
       expect.stringContaining("json")

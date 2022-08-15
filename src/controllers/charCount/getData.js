@@ -1,6 +1,4 @@
-import { response } from "express";
 import api from "../../api.js";
-import charCounter from "./charCounter.js";
 
 const getData = async (route) => {
   const information = await api.get(route);
