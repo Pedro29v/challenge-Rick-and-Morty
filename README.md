@@ -15,8 +15,8 @@ Episode locations:
 
 Instrucciones:
 
-  -Descarga o clona el repositorio.
-  -Abre la carpeta donde se aloja el proyecto en tu Editor de codigo preferido.
-  -En la terminal usa el comando npm i para instalar todos los paquetes que necesita el proyecto.
-  -Con el comando npm start inicia el programa. 
-  -Para visualizar el output en formato JSON abre tu navegador y dirigete a http://localhost:3001.
+  - Descarga o clona el repositorio.
+  - Abre la carpeta donde se aloja el proyecto en tu Editor de codigo preferido.
+  - En la terminal usa el comando npm i para instalar todos los paquetes que necesita el proyecto.
+  - Con el comando npm start inicia el programa. 
+  - Para visualizar el output en formato JSON abre tu navegador y dirigete a http://localhost:3001.
